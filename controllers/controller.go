@@ -26,6 +26,12 @@ func InsertMember(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
+
+	if err := models.ValidateMemberData(&member); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
 	database.DB.Create(&member)
 	c.JSON(http.StatusOK, member)
 }
@@ -54,6 +60,11 @@ func UpdateMember(c *gin.Context) {
 	id := c.Params.ByName("id")
 	database.DB.First(&member, id)
 	if err := c.ShouldBindJSON(&member); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	if err := models.ValidateMemberData(&member); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
