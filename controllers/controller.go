@@ -29,3 +29,14 @@ func InsertMember(c *gin.Context) {
 	database.DB.Create(&member)
 	c.JSON(http.StatusOK, member)
 }
+
+func FindMemberByID(c *gin.Context) {
+	var member models.Member
+	id := c.Params.ByName("id")
+
+	if err := database.DB.First(&member, id).Error; err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "Member not found"})
+		return
+	}
+	c.JSON(http.StatusOK, member)
+}
