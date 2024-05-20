@@ -15,7 +15,9 @@ func DisplayHelloMessage(c *gin.Context) {
 }
 
 func DisplayAllMembers(c *gin.Context) {
-	c.JSON(http.StatusOK, models.Members)
+	var members []models.Member
+	database.DB.Find(&members)
+	c.JSON(http.StatusOK, members)
 }
 
 func InsertMember(c *gin.Context) {
