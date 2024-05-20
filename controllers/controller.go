@@ -48,3 +48,16 @@ func DeleteMember(c *gin.Context) {
 	database.DB.Delete(&member, id)
 	c.JSON(http.StatusOK, gin.H{"message": "Member deleted"})
 }
+
+func UpdateMember(c *gin.Context) {
+	var member models.Member
+	id := c.Params.ByName("id")
+	database.DB.First(&member, id)
+	if err := c.ShouldBindJSON(&member); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	database.DB.Model(&member).UpdateColumns(member)
+	c.JSON(http.StatusOK, member)
+}

@@ -12,5 +12,6 @@ func HandleRequest() {
 	r.POST("/members", controllers.InsertMember)
 	r.GET("/members/:id", controllers.FindMemberByID)
 	r.DELETE("/members/:id", controllers.DeleteMember)
+	r.PATCH("/members/:id", controllers.UpdateMember)
 	r.Run()
 }
