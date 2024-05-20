@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/marialuizaleitao/gin-rest-api/models"
 	"net/http"
 )
 
@@ -13,6 +14,5 @@ func DisplayHelloMessage(c *gin.Context) {
 }
 
 func DisplayAllMembers(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{
-		"ID": 1, "Name": "George Harrison", "Role": "Guitar, Vocals"})
+	c.JSON(http.StatusOK, models.Members)
 }
