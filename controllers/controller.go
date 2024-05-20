@@ -40,3 +40,11 @@ func FindMemberByID(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, member)
 }
+
+func DeleteMember(c *gin.Context) {
+	var member models.Member
+	id := c.Params.ByName("id")
+
+	database.DB.Delete(&member, id)
+	c.JSON(http.StatusOK, gin.H{"message": "Member deleted"})
+}
