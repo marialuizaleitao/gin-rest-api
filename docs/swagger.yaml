@@ -1,0 +1,127 @@
+definitions:
+  models.Member:
+    properties:
+      id:
+        type: integer
+      name:
+        maxLength: 40
+        minLength: 2
+        type: string
+      role:
+        maxLength: 100
+        minLength: 2
+        type: string
+    required:
+    - name
+    - role
+    type: object
+info:
+  contact: {}
+paths:
+  /{name}:
+    get:
+      description: Displays a hello message with the provided name
+      parameters:
+      - description: Name of the person
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 'message: Hello {name}! Are you a Beatles fan?'
+          schema:
+            type: string
+      summary: Displays a hello message
+  /members:
+    get:
+      description: Retrieves a list of all members
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: List of members
+          schema:
+            items:
+              $ref: '#/definitions/models.Member'
+            type: array
+      summary: Displays all members
+    post:
+      consumes:
+      - application/json
+      description: Inserts a new member with the provided data
+      parameters:
+      - description: Member data
+        in: body
+        name: member
+        required: true
+        schema:
+          $ref: '#/definitions/models.Member'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Inserted member data
+          schema:
+            $ref: '#/definitions/models.Member'
+      summary: Inserts a new member
+  /members/{id}:
+    delete:
+      description: Deletes a member with the specified ID
+      parameters:
+      - description: Member ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 'message: Member deleted'
+          schema:
+            type: string
+      summary: Deletes a member by ID
+    get:
+      description: Retrieves a member with the specified ID
+      parameters:
+      - description: Member ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Member data
+          schema:
+            $ref: '#/definitions/models.Member'
+      summary: Retrieves a member by ID
+    patch:
+      consumes:
+      - application/json
+      description: Updates a member with the specified ID
+      parameters:
+      - description: Member ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Member data
+        in: body
+        name: member
+        required: true
+        schema:
+          $ref: '#/definitions/models.Member'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Updated member data
+          schema:
+            $ref: '#/definitions/models.Member'
+      summary: Updates a member by ID
+swagger: "2.0"

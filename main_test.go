@@ -21,5 +21,13 @@ func TestHelloMessageStatusCode(t *testing.T) {
 	w := httptest.NewRecorder()
 	r.ServeHTTP(w, req)
 	assert.Equal(t, http.StatusOK, w.Code)
+}
 
+func TestDisplayAllMembers(t *testing.T) {
+	r := setupTestRoutes()
+	r.GET("/members", controllers.DisplayAllMembers)
+	req, _ := http.NewRequest("GET", "/members", nil)
+	w := httptest.NewRecorder()
+	r.ServeHTTP(w, req)
+	assert.Equal(t, http.StatusOK, w.Code)
 }
