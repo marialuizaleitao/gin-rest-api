@@ -19,18 +19,23 @@ To run the API locally, follow these steps:
 
 1. Clone this repository:
 
-   ```bash
-   git clone https://github.com/marialuizaleitao/gin-rest-api.git
+    ```bash
+    git clone https://github.com/marialuizaleitao/gin-rest-api.git
+    ```
+
 2. Install dependencies:
 
-   ```bash
-   go mod tidy
+    ```bash
+    go mod tidy
+    ```
+
 3. Start the server:
 
-   ```bash
-   go run main.go
+    ```bash
+    go run main.go
+    ```
 
-The API will be available at http://localhost:8080.
+   The API will be available at [http://localhost:8080](http://localhost:8080).
 
 ## Technologies Used
 
@@ -39,7 +44,8 @@ The Beatles Fan Club API uses the following technologies:
 - **Go (Golang)**: Programming language used to build the API.
 - **Gin**: Web framework for Go, used for handling HTTP requests and responses.
 - **GORM**: ORM library for Go, used for interacting with the database.
+- **Swagger**: Documentation tool for RESTful APIs, used for generating API documentation.
 
-## Contribuiting
+## Contributing
 
 Contributions are welcome! If you have any suggestions, bug reports, or feature requests, please open an issue or submit a pull request.
